@@ -44,7 +44,7 @@ include('../user/header.php');
     const contact = document.getElementById("contact").value.trim();
 
     let handler = PaystackPop.setup({
-      key: "pk_live_f606c63502b84aca2287d73f69029aad835adb43", // Ensure no spaces in the key
+      key: "pk_test_787bd30025bf5175276fe2413395c047aca652e4", // Ensure no spaces in the key
       email: email,
       amount: amount * 100, // Convert amount to the lowest denomination (e.g., 5000 for GHS 50.00)
       currency: "GHS",

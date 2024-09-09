@@ -13,7 +13,7 @@ if (!$user_id) {
 
 try {
     // Fetch payments for this user
-    $stmt = $conn->prepare("SELECT * FROM payment WHERE user_id = :user_id");
+    $stmt = $conn->prepare("SELECT transaction_Id,name, purpose, amount, contact, status, payment_status FROM payment WHERE user_id = :user_id");
     $stmt->execute(['user_id' => $user_id]);
     $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
     

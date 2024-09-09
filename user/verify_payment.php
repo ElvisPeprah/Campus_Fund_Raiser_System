@@ -16,7 +16,7 @@ if (!$reference) {
 $user_id = $_SESSION['user_id'];
 
 // Paystack secret key (ensure this is correct and kept secure)
-$secret_key = 'sk_live_498b2314b02921a77157b206ae97358984879ede';
+$secret_key = 'sk_test_dc4bfde29357c47f4c68afb031ce39d3e18356b6';
 
 // Initialize cURL for Paystack verification
 $ch = curl_init();
@@ -43,7 +43,14 @@ if ($result && $result['status'] && $result['data']['status'] === 'success') {
     $email = $result['data']['customer']['email'];
     $purpose = isset($_POST['purpose']) ? $_POST['purpose'] : 'Donation';  // Assuming purpose comes from form
     $amount = $result['data']['amount'] / 100;  // Convert to currency format
-    $contact = $result['data']['customer']['phone'];  // Assuming contact can be retrieved
+    $contact = isset($result['data']['customer']['phone']) ? $result['data']['customer']['phone'] : null;
+
+    if (!$contact) {
+        $contact = 'Not Provided';  // Default value if phone is not provided
+    }
+    
+
+   // $contact = $result['data']['customer']['phone'];  // Assuming contact can be retrieved
     $transaction_id = $result['data']['id'];
     $status = $result['data']['status'];
     $payment_status = 'verified';
